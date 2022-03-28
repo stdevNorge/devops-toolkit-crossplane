@@ -37,3 +37,11 @@ kubectl apply -f crossplane-config/config-k8s.yaml
 ```
 kubectl apply -f crossplane-config/config-monitoring.yaml
 ```
+
+```
+kubectl apply -f packages/monitoring/definition.yaml
+```
+
+```
+kubectl apply -f packages/monitoring/prom-loki.yaml
+```
