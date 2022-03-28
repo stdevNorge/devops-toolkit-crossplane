@@ -1,0 +1,13 @@
+apiVersion: apdexone.com/v1alpha1
+kind: Test
+metadata:
+  name: project-a-test
+  labels:
+    provider: k6
+spec:
+  id: project-a-test
+  compositionRef:
+    name: test-k6
+  parameters:
+    imagen: ""
+    schedule: "0 12 * * *"

@@ -19,18 +19,10 @@ spec:
       kind: ProviderConfig
       spec:
         credentials:
-          source: Secret
-          secretRef:
-            key: kubeconfig
+          source: InjectedIdentity
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
-    - fromFieldPath: spec.parameters.kubeConfig.secretNamespace
-      toFieldPath: spec.credentials.secretRef.namespace
-    - fromFieldPath: spec.parameters.kubeConfig.secretName
-      toFieldPath: spec.credentials.secretRef.name
-    - fromFieldPath: spec.parameters.kubeConfig.secretKey
-      toFieldPath: spec.credentials.secretRef.key
     readinessChecks:
       - type: None
   - name: argocd
@@ -69,18 +61,10 @@ spec:
       kind: ProviderConfig
       spec:
         credentials:
-          source: Secret
-          secretRef:
-            key: kubeconfig
+          source: InjectedIdentity
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
-    - fromFieldPath: spec.parameters.kubeConfig.secretNamespace
-      toFieldPath: spec.credentials.secretRef.namespace
-    - fromFieldPath: spec.parameters.kubeConfig.secretName
-      toFieldPath: spec.credentials.secretRef.name
-    - fromFieldPath: spec.parameters.kubeConfig.secretKey
-      toFieldPath: spec.credentials.secretRef.key
     readinessChecks:
       - type: None
   - name: argocd-project

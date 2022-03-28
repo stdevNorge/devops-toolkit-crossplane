@@ -1,0 +1,52 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: test-k6
+  labels:
+    provider: k6
+spec:
+  compositeTypeRef:
+    apiVersion: apdexone.com/v1alpha1
+    kind: Test
+  resources:
+  - name: cronjob
+    base:
+      apiVersion: kubernetes.crossplane.io/v1alpha1
+      kind: Object
+      spec:
+        forProvider:
+          manifest:
+            apiVersion: batch/v1
+            kind: CronJob
+            metadata:
+            spec:
+              jobTemplate:
+                spec:
+                  template:
+                    spec:
+                      containers:
+                      - name: hello
+                        image: busybox:1.28
+                        imagePullPolicy: IfNotPresent
+                        command:
+                        - /bin/sh
+                        - -c
+                        - date; echo Hello from the Kubernetes cluster
+                      restartPolicy: OnFailure
+    patches:
+    - fromFieldPath: spec.id
+      toFieldPath: metadata.name
+      transforms:
+        - type: string
+          string:
+            fmt: "%s-crojob"
+    - fromFieldPath: spec.id
+      toFieldPath: spec.forProvider.manifest.metadata.name
+      transforms:
+        - type: string
+          string:
+            fmt: "%s-crojob"
+    - fromFieldPath: spec.id
+      toFieldPath: spec.providerConfigRef.name
+    - fromFieldPath: spec.parameters.schedule
+      toFieldPath: spec.forProvider.manifest.spec.schedule
