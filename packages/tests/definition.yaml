@@ -1,14 +1,14 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: test.apdexone.com
+  name: xtests.apdexone.com
 spec:
   defaultCompositionRef:
     name: test-k6
   group: apdexone.com
   names:
-    kind: Test
-    plural: tests
+    kind: XTest
+    plural: xtests
   claimNames:
     kind: TestClaim
     plural: testclaims
@@ -29,7 +29,10 @@ spec:
               parameters:
                 type: object
                 properties:
-                  imagen:
+                  namespace:
+                    type: string
+                    description: The name of the secret with KubeConfig
+                  image:
                     type: string
                     description: The name of the secret with KubeConfig
                   schedule:

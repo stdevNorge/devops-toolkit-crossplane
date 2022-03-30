@@ -2,13 +2,23 @@ apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
   name: test-k6
-  labels:
-    provider: k6
 spec:
   compositeTypeRef:
     apiVersion: apdexone.com/v1alpha1
-    kind: Test
+    kind: XTest
   resources:
+  - name: kubernetes
+    base:
+      apiVersion: kubernetes.crossplane.io/v1alpha1
+      kind: ProviderConfig
+      spec:
+        credentials:
+          source: InjectedIdentity
+    patches:
+    - fromFieldPath: spec.id
+      toFieldPath: metadata.name
+    readinessChecks:
+      - type: None
   - name: cronjob
     base:
       apiVersion: kubernetes.crossplane.io/v1alpha1
@@ -18,20 +28,13 @@ spec:
           manifest:
             apiVersion: batch/v1
             kind: CronJob
-            metadata:
             spec:
               jobTemplate:
                 spec:
                   template:
                     spec:
                       containers:
-                      - name: hello
-                        image: busybox:1.28
-                        imagePullPolicy: IfNotPresent
-                        command:
-                        - /bin/sh
-                        - -c
-                        - date; echo Hello from the Kubernetes cluster
+                      - imagePullPolicy: IfNotPresent
                       restartPolicy: OnFailure
     patches:
     - fromFieldPath: spec.id
@@ -39,14 +42,22 @@ spec:
       transforms:
         - type: string
           string:
-            fmt: "%s-crojob"
+            fmt: "%s-cronjob"
+    - fromFieldPath: spec.parameters.namespace
+      toFieldPath: metadata.namespace
+    - fromFieldPath: spec.parameters.namespace
+      toFieldPath: spec.forProvider.manifest.metadata.namespace
     - fromFieldPath: spec.id
       toFieldPath: spec.forProvider.manifest.metadata.name
       transforms:
         - type: string
           string:
-            fmt: "%s-crojob"
+            fmt: "%s-cronjob"
     - fromFieldPath: spec.id
       toFieldPath: spec.providerConfigRef.name
     - fromFieldPath: spec.parameters.schedule
       toFieldPath: spec.forProvider.manifest.spec.schedule
+    - fromFieldPath: spec.parameters.image
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].image
+    - fromFieldPath: spec.id
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].name

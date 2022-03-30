@@ -1,5 +1,5 @@
 apiVersion: apdexone.com/v1alpha1
-kind: Test
+kind: XTest
 metadata:
   name: project-a-test
   labels:
@@ -9,5 +9,6 @@ spec:
   compositionRef:
     name: test-k6
   parameters:
-    imagen: ""
+    image: "norgefajardo/k6:v0.37.0"
     schedule: "0 12 * * *"
+    namespace: production
