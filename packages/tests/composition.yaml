@@ -34,7 +34,10 @@ spec:
                   template:
                     spec:
                       containers:
-                      - imagePullPolicy: IfNotPresent
+                      - imagePullPolicy: Always
+                        env:
+                        - name: K6_PROMETHEUS_REMOTE_URL
+                          value: "http://monitoring-prometheus-server.monitoring.svc/api/v1/write"
                       restartPolicy: OnFailure
     patches:
     - fromFieldPath: spec.id
@@ -61,3 +64,5 @@ spec:
       toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].image
     - fromFieldPath: spec.id
       toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].name
+    - fromFieldPath: spec.parameters.args
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].args

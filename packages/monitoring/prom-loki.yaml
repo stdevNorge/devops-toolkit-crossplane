@@ -40,6 +40,8 @@ spec:
             repository: https://prometheus-community.github.io/helm-charts
             version: "15.5.3"
           set:
+          - name: server.defaultFlagsOverride[0]
+            value: --enable-feature=remote-write-receiver
           - name: server.ingress.enabled
             value: "true"
           - name: server.ingress.hosts[0]

@@ -35,6 +35,12 @@ spec:
                   image:
                     type: string
                     description: The name of the secret with KubeConfig
+                  args:
+                    type: array
+                    description: The name of the secret with KubeConfig
+                    items:
+                      type: string
+                      description: The name of the secret with KubeConfig
                   schedule:
                     type: string
                     description: The name of the secret with KubeConfig
