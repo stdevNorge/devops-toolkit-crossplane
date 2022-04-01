@@ -66,3 +66,13 @@ spec:
       toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].name
     - fromFieldPath: spec.parameters.args
       toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].args
+    - fromFieldPath: spec.parameters.cpu
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].resources.requests.cpu
+    - fromFieldPath: spec.parameters.memory
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].resources.requests.memory
+    - fromFieldPath: spec.parameters.pods
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.completions
+    - fromFieldPath: spec.parameters.pods
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.parallelism
+    - fromFieldPath: spec.parameters.duration
+      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.activeDeadlineSeconds

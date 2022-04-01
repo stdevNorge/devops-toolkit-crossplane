@@ -44,16 +44,15 @@ spec:
                   schedule:
                     type: string
                     description: The name of the secret with KubeConfig
-                  resources:
-                    type: object
-                    description: The name of the secret with KubeConfig
-                    properties:
-                      cpu:
-                        type: string
-                        description: The name of the secret with KubeConfig
-                      memory:
-                        type: string
-                        description: The name of the secret with KubeConfig
-                  pods:
+                  cpu:
                     type: string
+                    description: The name of the secret with KubeConfig
+                  memory:
+                    type: string
+                    description: The name of the secret with KubeConfig
+                  pods:
+                    type: integer
+                    description: The name of the secret with KubeConfig
+                  duration:
+                    type: integer
                     description: The name of the secret with KubeConfig
