@@ -72,20 +72,7 @@ kubectl apply -f packages/gitops/definition.yaml
 ```
 
 ```
-kubectl apply -f examples/monitoring/prom-loki.yaml
+kubectl apply -f examples/gitops/argo-cd-no-claim.yaml
 ```
 
-```
-kubectl apply -f examples/monitoring/prom-loki.yaml
-```
-
-```
-kubectl apply -f packages/gitops/argo-cd.yaml
-kubectl apply -f packages/gitops/definition.yaml
-```
-
-```
-kubectl apply -f examples/monitoring/prom-loki.yaml
-```
 Una vez ejecutados los comandos anteriores estamos en condiciones de comenzar a ejecutar nuestras pruebas.
-Falta explicar la configuracion del argoCD
