@@ -87,6 +87,12 @@ spec:
             value: "true"
           - name: ingress.hostname
             value: influxdb.127.0.0.1.nip.io
+          - name: ingress.hostname
+            value: influxdb.127.0.0.1.nip.io
+          - name: env[0].name
+            value: INFLUXDB_DB
+          - name: env[0].value
+            value: "demo"
     patches:
     - fromFieldPath: spec.id
       toFieldPath: metadata.name
@@ -147,6 +153,10 @@ spec:
                 - name: Loki
                   type: loki
                   url: http://monitoring-loki:3100
+                  isDefault: false
+                - name: InfluxDB
+                  type: influxdb
+                  url: http://monitoring-influxdb:8086
                   isDefault: false
             dashboardProviders:
               dashboardproviders.yaml:
