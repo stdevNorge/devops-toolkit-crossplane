@@ -40,8 +40,6 @@ spec:
             repository: https://prometheus-community.github.io/helm-charts
             version: "15.5.3"
           set:
-          - name: server.defaultFlagsOverride[0]
-            value: --enable-feature=remote-write-receiver
           - name: server.ingress.enabled
             value: "true"
           - name: server.ingress.hosts[0]
@@ -82,11 +80,11 @@ spec:
             version: "4.10.7"
           set:
           - name: persistence.enabled
-            value: true
+            value: "true"
           - name: persistence.storageClass
             value: standard
           - name: ingress.enabled
-            value: true
+            value: "true"
           - name: ingress.hostname
             value: influxdb.127.0.0.1.nip.io
     patches:
