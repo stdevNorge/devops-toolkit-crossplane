@@ -64,8 +64,6 @@ spec:
       toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].image
     - fromFieldPath: spec.id
       toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].name
-    - fromFieldPath: spec.parameters.args
-      toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].args
     - fromFieldPath: spec.parameters.cpu
       toFieldPath: spec.forProvider.manifest.spec.jobTemplate.spec.template.spec.containers[0].resources.requests.cpu
     - fromFieldPath: spec.parameters.memory
