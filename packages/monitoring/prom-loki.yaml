@@ -82,7 +82,7 @@ spec:
           - name: persistence.enabled
             value: "true"
           - name: persistence.storageClass
-            value: standard
+            value: standard-new
           - name: ingress.enabled
             value: "true"
           - name: ingress.hostname
@@ -141,6 +141,12 @@ spec:
           - name: ingress.enabled
             value: "true"
           - name: ingress.hosts[0]
+          - name: persistence.enabled
+            value: "true"
+          - name: persistence.storageClassName
+            value: standard-new
+          - name: persistence.size
+            value: 10Gi
           values:
             datasources:
               datasources.yaml:
