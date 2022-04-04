@@ -78,7 +78,7 @@ kubectl apply -f examples/gitops/argo-cd-no-claim.yaml
 Una vez ejecutados los comandos anteriores estamos en condiciones de comenzar a ejecutar nuestras pruebas.
 
 
-Instalar el influxdb:
+##Instalar influxdb:
 
 Eliminamos los componentes de monitoreo:
 
