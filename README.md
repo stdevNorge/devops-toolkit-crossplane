@@ -79,6 +79,9 @@ Una vez ejecutados los comandos anteriores estamos en condiciones de comenzar a 
 
 
 ##Instalar influxdb:
+```
+kubectl apply -f storageClassNew.yaml
+```
 
 Eliminamos los componentes de monitoreo:
 
