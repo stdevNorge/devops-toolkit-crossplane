@@ -158,6 +158,7 @@ spec:
                   type: influxdb
                   url: http://monitoring-influxdb:8086
                   isDefault: false
+                  database: demo
             dashboardProviders:
               dashboardproviders.yaml:
                 apiVersion: 1
