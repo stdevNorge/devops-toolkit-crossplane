@@ -76,3 +76,35 @@ kubectl apply -f examples/gitops/argo-cd-no-claim.yaml
 ```
 
 Una vez ejecutados los comandos anteriores estamos en condiciones de comenzar a ejecutar nuestras pruebas.
+
+
+Instalar el influxdb:
+
+Eliminamos los componentes de monitoreo:
+
+```
+kubectl delete -f packages/monitoring/prom-loki.yaml
+kubectl delete -f examples/monitoring/prom-loki.yaml
+```
+
+Para comprobar que se hayan eliminado los componentes la salida del siguiente
+comando no debe devolver ningun pod
+
+```
+kubectl get pods -n monitoring
+```
+
+Volvemos a instalar el monitoreo:
+
+```
+kubectl apply -f packages/monitoring/prom-loki.yaml
+kubectl apply -f examples/monitoring/prom-loki.yaml
+```
+
+Ejecutar pruebas desde un contenedor externa  e insertarlas en el InfluxDB del cluster:
+
+Ejecutar el siguiente comando desde la carpeta del proyecto
+
+```
+sudo docker run --network=host --rm -ti -v "$PWD/script.js:/opt/script.js" loadimpact/k6  run /opt/script.js --out influxdb=http://influxdb.127.0.0.1.nip.io/demo
+```
